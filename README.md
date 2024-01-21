@@ -3,7 +3,7 @@
 [![hexlet-check](https://github.com/VileDeveloper/rails-project-64/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/VileDeveloper/rails-project-64/actions/workflows/hexlet-check.yml)
 [![Rails](https://github.com/VileDeveloper/rails-project-64/actions/workflows/custom-build.yml/badge.svg)](https://github.com/VileDeveloper/rails-project-64/actions/workflows/custom-build.yml)
 
-Link for testing project: https://viledeveloper-rails-project-64.onrender.com
+Deployed [link](https://viledeveloper-rails-project-64.onrender.com)
 
 ## Collective Blog
 
