@@ -1,24 +1,36 @@
-# README
+# Hexlet project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![hexlet-check](https://github.com/VileDeveloper/rails-project-64/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/VileDeveloper/rails-project-64/actions/workflows/hexlet-check.yml)
+[![Rails](https://github.com/VileDeveloper/rails-project-64/actions/workflows/custom-build.yml/badge.svg)](https://github.com/VileDeveloper/rails-project-64/actions/workflows/custom-build.yml)
 
-Things you may want to cover:
+Link for testing project: https://viledeveloper-rails-project-64.onrender.com
 
-* Ruby version
+## Collective Blog
 
-* System dependencies
+Empower users to create and share entries within specific categories. Encourage community engagement through ratings and comments, enabling a collaborative environment where users contribute content and interact with each other's submissions.
 
-* Configuration
+### Development Commands
 
-* Database creation
+- **Setup:**
 
-* Database initialization
+  ```bash
+  make setup
+  ```
 
-* How to run the test suite
+  Installs dependencies, sets up the database, and precompiles assets.
 
-* Services (job queues, cache servers, search engines, etc.)
+- **Test:**
 
-* Deployment instructions
+  ```bash
+  make test
+  ```
 
-* ...
+  Runs tests using Minitest.
+
+- **Lint:**
+  ```bash
+  make lint
+  ```
+  Runs RuboCop for linting.
+
+[GitHub](https://github.com/VileDeveloper)
