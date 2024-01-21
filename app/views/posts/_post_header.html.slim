@@ -1,0 +1,5 @@
+h4
+  => link_to t('.title'), root_path
+  - if @post&.category&.name&.humanize
+    span.ms-2.me-2 = '/'
+    = @post.category.name.humanize

@@ -1,0 +1,10 @@
+p style="color: green" = notice
+
+h1 = t('app_name')
+
+#posts
+  .row
+    - @posts.each do |post|
+      == render \
+         partial: 'post', \
+         locals: { post: }

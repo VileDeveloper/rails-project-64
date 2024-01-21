@@ -41,5 +41,8 @@ jobs:
       - name: Run lint (rubocop)
         run: make lint
 
+      - name: Run slim (slim-lint)
+        run: make slim-lint
+
       - name: Run tests
         run: make test

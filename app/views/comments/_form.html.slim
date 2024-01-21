@@ -1,0 +1,12 @@
+= simple_form_for(comment, method: :post, url: post_comments_path(comment.post_id)) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  - if comment.has_parent?
+    = f.hidden_field :parent_id, value: comment.parent_id
+
+  .form-inputs
+    = f.input :content, label: false
+
+  .form-actions
+    = f.button :submit, t('action.comment'), class: "btn-#{action_to_css_class_color(:create)}"

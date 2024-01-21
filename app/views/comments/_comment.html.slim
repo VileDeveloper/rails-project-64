@@ -1,0 +1,28 @@
+.card.mt-2.rounded-0
+  .card-header.border-0
+    a.me-2[
+      id="#{dom_id(comment)}"
+      href="##{dom_id(comment)}"
+    ] #
+    span.me-2 = comment.user.email
+    span.fs-6.text-muted = datetime_humanized(comment.created_at)
+  .card-body.border-0
+    p.card-text = comment.content
+  .card-footer.border-0
+    - if user_signed_in?
+      a.fs-6.text-decoration-underline.text-lowercase.collapsed[
+        type="button"
+        aria_controls="response_#{dom_id(comment)}"
+        data-bs-target="#response_#{dom_id(comment)}"
+        data-bs-toggle="collapse" href="#" style="" aria-expanded="false"
+      ] Comment
+      .ms-2.collapse[
+        id="response_#{dom_id(comment)}"
+      ]
+        - new_comment = comment.children.new(post_id: comment.post_id, user_id: current_user.id)
+        = render partial: 'comments/form', locals: { comment: new_comment }
+
+    - comments[comment].keys.any?
+      div = render partial: 'comments/comment',
+                   collection: comments[comment].keys.reverse,
+                   locals: { comments: comments[comment] }

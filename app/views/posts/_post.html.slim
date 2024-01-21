@@ -1,0 +1,17 @@
+- require 'posts_helper'
+article.col-md-12
+  .card.mb-3
+    .card-header
+      - if action_name == 'index'
+        => link_to post.title.capitalize, post, 'aria-label': t('.link')
+        span.ms-2.me-2 = '/'
+        = post.category.name.to_s
+      - else
+        span[aria-label="#{t('.link')}"] = post.title.capitalize
+    .card-body
+      p.card-text = post.body
+    .card-footer.d-flex.justify-content-between
+      .small.text-muted
+        span.me-2 => post.creator.email
+        span =<> time_ago_in_words(post.created_at.to_time)
+      == render partial: 'likes/like', locals: { post: }

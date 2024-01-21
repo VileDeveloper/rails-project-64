@@ -1,9 +1,18 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.2.2'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.1.2'
+
+# Ancestry allows rails ActiveRecord models to be organized as a tree structure (or hierarchy).
+gem 'ancestry'
+
+# Devise is a flexible authentication solution for Rails based on Warden
+gem 'devise', '~> 4.9'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
@@ -27,7 +36,7 @@ gem 'cssbundling-rails'
 gem 'jbuilder'
 
 # Use Redis adapter to run Action Cable in production
-gem 'redis', '>= 4.0.1'
+# gem 'redis', '>= 4.0.1'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -44,9 +53,24 @@ gem 'bootsnap', require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+gem 'faker'
+gem 'sentry-rails'
+gem 'sentry-ruby'
+gem 'simple_form'
+gem 'slim_lint'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem 'annotate'
   gem 'debug', platforms: %i[mri windows]
+  gem 'highline'
+  gem 'i18n-tasks'
+  gem 'rubocop-capybara', require: false
+  gem 'rubocop-minitest', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rake', require: false
+  gem 'rubocop-slim', require: false
   gem 'sqlite3'
 end
 
@@ -64,7 +88,10 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
+  gem 'minitest-power_assert'
   gem 'selenium-webdriver'
+  gem 'simplecov', require: false
+  gem 'webdrivers'
 end
 
 group :production do
