@@ -4,14 +4,14 @@
 #
 # Table name: posts
 #
-#  id          :bigint           not null, primary key
+#  id          :integer          not null, primary key
 #  body        :text
 #  likes_count :integer          default(0)
 #  title       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  category_id :bigint           not null
-#  creator_id  :bigint           not null
+#  category_id :integer          not null
+#  creator_id  :integer          not null
 #
 # Indexes
 #
@@ -20,8 +20,8 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (category_id => categories.id)
-#  fk_rails_...  (creator_id => users.id)
+#  category_id  (category_id => categories.id)
+#  creator_id   (creator_id => users.id)
 #
 class Post < ApplicationRecord
   belongs_to :category, inverse_of: :posts

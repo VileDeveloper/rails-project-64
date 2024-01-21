@@ -8,9 +8,10 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     @post = posts(:one)
     @parent_comment = post_comments(:one)
   end
+
   test '#create' do
     post_comment_params = {
-      content: Faker::Lorem.sentence,
+      content: Faker::Books::Dune.quote,
       parent_id: @parent_comment.id
     }
     sign_in @user
@@ -20,7 +21,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     post_comment = PostComment.find_by({
                                          user: @user,
                                          post: @post,
-                                         ancestry: @parent_comment.id,
+                                         ancestry: "/#{@parent_comment.id}/",
                                          content: post_comment_params.fetch(:content)
                                        })
 
