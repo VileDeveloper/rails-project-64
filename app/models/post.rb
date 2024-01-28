@@ -29,8 +29,8 @@ class Post < ApplicationRecord
   has_many :comments, class_name: 'PostComment', dependent: :destroy
   has_many :likes, class_name: 'PostLike', dependent: :destroy
 
-  validates :title, presence: true, length: { minimum: 3, maximum: 100 }
-  validates :body, presence: true, length: { minimum: 3 }
+  validates :title, presence: true, length: { minimum: 5, maximum: 255 }
+  validates :body, presence: true, length: { minimum: 200, maximum: 4000 }
 
   def liked(user)
     return nil if !user || !user.id

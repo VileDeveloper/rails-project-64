@@ -25,6 +25,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :posts, dependent: :destroy
-  has_many :post_comments, dependent: :destroy
   has_many :post_likes, dependent: :nullify
+  has_many :comments, class_name: 'PostComment', inverse_of: :user, dependent: :destroy
 end

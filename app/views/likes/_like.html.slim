@@ -1,14 +1,17 @@
 div
-  span.me-2 = post.likes_count
+  span.me-2
+    = post.likes_count
   span
     - if user_signed_in?
       - if post.liked(current_user)
-        = link_to '', post_like_path(post.id, post.liked(current_user)),
-                                          class: 'bi bi-hand-thumbs-up-fill',
-                                          data: { turbo_method: :delete }
+        = link_to '',
+            post_like_path(post.id, post.liked(current_user)),
+            class: 'bi bi-hand-thumbs-up-fill',
+            data: { turbo_method: :delete }
       - else
-        = link_to '', post_likes_path(post.id),
-                                          class: 'bi bi-hand-thumbs-up',
-                                          data: { turbo_method: :post }
+        = link_to '',
+            post_likes_path(post.id),
+            class: 'bi bi-hand-thumbs-up',
+            data: { turbo_method: :post }
     - else
       i.bi.bi-hand-thumbs-up

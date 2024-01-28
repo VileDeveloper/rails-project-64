@@ -7,6 +7,7 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
 
   setup do
     get '/users/sign_in'
+
     @user_one = users(:one)
     @post_one = posts(:one)
     @post_like_one = post_likes(:one)
@@ -20,7 +21,11 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
   test 'should get create' do
     referer = post_url(@post_two.id)
     headers = { 'HTTP_REFERER' => referer }
-    post post_likes_url(@post_two.id), headers:, params: { post_id: @post_two.id, user_id: @user_one.id }
+    post post_likes_url(@post_two.id), headers:, params:
+      {
+        post_id: @post_two.id,
+        user_id: @user_one.id
+      }
 
     assert_response :redirect
   end

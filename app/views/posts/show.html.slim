@@ -1,15 +1,28 @@
-p style="color: green" = notice
-
-= render 'post_header', post: @post
-= render partial: 'post', locals: { post: @post }
-
-- if user_signed_in? && action_name != 'index'
-  = render 'post_navigation'
-
+ol.breadcrumb
+  li.breadcrumb-item
+    = link_to t('.all_posts'), root_path
+  li.breadcrumb-item.active = @post.category.name
+.card.mb-3
+  .card-header
+    h3
+      = @post.title
+  .card-body
+    p
+      = simple_format(@post.body)
+  .card-footer.d-flex.justify-content-between
+    .small.text-muted
+      span.me-2
+        = @post.creator.email
+      span
+        = time_ago_in_words(@post.created_at.to_time)
+    == render partial: 'likes/like', locals: { post: @post }
 .lead.mt-3
-  span = t('.comments')
+  span
+    = t('.comments')
   - if user_signed_in?
-    - new_comment = @post.comments.new(post_id: @post.id, user_id: current_user.id)
-    = render partial: 'comments/form', locals: { comment: new_comment }
-  - if @comments.keys.any?
-    = render(partial: 'comments/comment', collection: @comments.keys.reverse, locals: { comments: @comments })
+    = simple_form_for @form_comment, url: post_comments_path(@post) do |f|
+      = f.input :content, as: :text, label: false
+      = f.input :parent_id, as: :hidden, input_html: { value: nil }
+      = f.button :submit, class: 'btn-primary mt-2'
+  - @comments.each do |comment, children|
+    = render 'comments/children', comment:, children:, post: @post, form_comment: @form_comment

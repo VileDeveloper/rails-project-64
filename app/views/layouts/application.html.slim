@@ -1,8 +1,8 @@
 doctype html
 html
   head
-    title = t('app_name')
-
+    title
+      = t('application.name')
     meta[name="viewport" content="width=device-width,initial-scale=1"]
     = csrf_meta_tags
     = csp_meta_tag
@@ -13,7 +13,9 @@ html
     = render 'layouts/shared/header'
     = render 'layouts/shared/footer'
 
-    main.flex-shrink-0.mb-5.pb-3
-      .container
-        = render 'layouts/shared/flash'
-        = yield
+    .container.my-4
+      = render 'layouts/shared/flash'
+      - if content_for?(:title)
+        h1
+          = yield :title
+      = yield
