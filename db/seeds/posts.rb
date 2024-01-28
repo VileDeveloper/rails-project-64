@@ -4,14 +4,14 @@ return if Post.any?
 
 posts = [
   {
-    title: Faker::Books::Dune.title,
-    body: Faker::Books::Dune.quote,
+    title: Faker::Movies::HarryPotter.spell,
+    body: Faker::Books::Lovecraft.fhtagn(number: 20),
     category: Category.first,
     creator: User.first
   },
   {
-    title: Faker::Books::Dune.title,
-    body: Faker::Books::Dune.quote,
+    title: Faker::Movies::HarryPotter.spell,
+    body: Faker::Books::Lovecraft.fhtagn(number: 20),
     category: Category.last,
     creator: User.last
   }
