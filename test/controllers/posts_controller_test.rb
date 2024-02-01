@@ -24,15 +24,16 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create post' do
-      post posts_url, params:
-        {
-          post: {
-            body: @post_with_comments.body,
-            category_id: @post_with_comments.category_id,
-            creator_id: @post_with_comments.creator_id,
-            title: @second_post_title
-          }
+    post posts_url, params:
+      {
+        post: {
+          body: @post_with_comments.body,
+          category_id: @post_with_comments.category_id,
+          creator_id: @post_with_comments.creator_id,
+          title: @second_post_title
         }
+      }
+
     assert_response :redirect
 
     created_post =
@@ -42,6 +43,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         creator_id: @post_with_comments.creator_id,
         title: @second_post_title
       )
+
     assert(created_post)
   end
 

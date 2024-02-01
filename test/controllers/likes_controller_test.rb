@@ -24,6 +24,7 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
         post_id: @post_two.id,
         user_id: @user_one.id
       }
+
     assert_response :redirect
 
     created_post_like =
@@ -31,14 +32,17 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
         post_id: @post_two.id,
         user_id: @user_one.id
       )
+
     assert(created_post_like)
   end
 
   test 'should get destroy' do
     delete post_like_url(@post_one.id, @post_like_one.id)
+
     assert_response :redirect
 
     deleted_post_like = PostLike.find_by(id: @post_like_one.id)
+
     assert_nil(deleted_post_like)
   end
 end
