@@ -44,3 +44,8 @@
 !/app/assets/builds/.keep
 
 /node_modules
+
+# Ignore SQLite cache files
+/rails_project_64
+/rails_project_64-shm
+/rails_project_64-wal
