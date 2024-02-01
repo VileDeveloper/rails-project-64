@@ -4,11 +4,10 @@ require 'test_helper'
 
 class CommentsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    get '/users/sign_in'
-
     @user_one = users(:one)
     @post_with_comments = posts(:with_comments)
     @comment_one = post_comments(:one)
+    @second_content = 'second post_comment content'
 
     sign_in(@user_one)
   end
@@ -19,9 +18,18 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
         post_comment: {
           post_id: @comment_one.post_id,
           user_id: @comment_one.user_id,
-          content: @comment_one.content
+          content: @second_content
         }
       }
+
+    created_post_comment =
+      PostComment.find_by(
+        post_id: @comment_one.post_id,
+        ancestry: @comment_one.ancestry,
+        content: @second_content
+      )
+
+    assert(created_post_comment)
 
     assert_response :redirect
     assert_redirected_to post_path(@post_with_comments, anchor: "post_comment_#{PostComment.last.id}")

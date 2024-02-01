@@ -19,10 +19,4 @@ class ApplicationHelperTest < ActionView::TestCase
       assert_equal(action_to_css_class_color(action), color)
     end
   end
-
-  test 'check datetime_humanized' do
-    date = DateTime.new(2013, 1, 1, 14, 15)
-
-    assert datetime_humanized(date), ' 1 January 2013, 14:15'
-  end
 end

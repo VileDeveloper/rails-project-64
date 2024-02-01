@@ -6,8 +6,6 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
   include PostsHelper
 
   setup do
-    get '/users/sign_in'
-
     @user_one = users(:one)
     @post_one = posts(:one)
     @post_like_one = post_likes(:one)
@@ -26,15 +24,21 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
         post_id: @post_two.id,
         user_id: @user_one.id
       }
-
     assert_response :redirect
+
+    created_post_like =
+      PostLike.find_by(
+        post_id: @post_two.id,
+        user_id: @user_one.id
+      )
+    assert(created_post_like)
   end
 
   test 'should get destroy' do
-    assert_difference('PostLike.count', -1) do
-      delete post_like_url(@post_one.id, @post_like_one.id)
-    end
-
+    delete post_like_url(@post_one.id, @post_like_one.id)
     assert_response :redirect
+
+    deleted_post_like = PostLike.find_by(id: @post_like_one.id)
+    assert_nil(deleted_post_like)
   end
 end

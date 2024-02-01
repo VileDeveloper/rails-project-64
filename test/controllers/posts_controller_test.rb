@@ -6,7 +6,8 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @post_with_comments = posts(:one)
     @category_two = categories(:two)
-    get '/users/sign_in'
+    @second_post_title = 'second post title'
+
     sign_in(users(:one))
   end
 
@@ -23,19 +24,25 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create post' do
-    assert_difference('Post.count') do
       post posts_url, params:
         {
           post: {
             body: @post_with_comments.body,
             category_id: @post_with_comments.category_id,
             creator_id: @post_with_comments.creator_id,
-            title: @post_with_comments.title
+            title: @second_post_title
           }
         }
-    end
-
     assert_response :redirect
+
+    created_post =
+      Post.find_by(
+        body: @post_with_comments.body,
+        category_id: @post_with_comments.category_id,
+        creator_id: @post_with_comments.creator_id,
+        title: @second_post_title
+      )
+    assert(created_post)
   end
 
   test 'should show post' do

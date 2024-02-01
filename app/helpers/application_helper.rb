@@ -23,8 +23,4 @@ module ApplicationHelper
       'default'
     end
   end
-
-  def datetime_humanized(datetime)
-    datetime.strftime('%e %B %Y, %H:%M')
-  end
 end
