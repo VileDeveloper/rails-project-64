@@ -54,8 +54,6 @@ gem 'bootsnap', require: false
 # gem "image_processing", "~> 1.2"
 
 gem 'faker'
-gem 'sentry-rails'
-gem 'sentry-ruby'
 gem 'simple_form'
 gem 'slim_lint'
 
