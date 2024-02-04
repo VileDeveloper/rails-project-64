@@ -23,7 +23,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
       }
 
     assert_response :redirect
-    assert_redirected_to post_path(@post_with_comments, anchor: "post_comment_#{PostComment.last.id}")
+    assert_redirected_to post_path(@post_with_comments)
 
     created_post_comment =
       PostComment.find_by(

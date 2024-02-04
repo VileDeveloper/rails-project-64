@@ -3,9 +3,9 @@ div
     = post.likes_count
   span
     - if user_signed_in?
-      - if post.liked(current_user)
+      - if post.like_by_user(current_user)
         = link_to '',
-            post_like_path(post.id, post.liked(current_user)),
+            post_like_path(post.id, post.like_by_user(current_user)),
             class: 'bi bi-hand-thumbs-up-fill',
             data: { turbo_method: :delete }
       - else

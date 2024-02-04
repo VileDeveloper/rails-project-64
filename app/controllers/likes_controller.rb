@@ -1,32 +1,21 @@
 # frozen_string_literal: true
 
 class LikesController < ApplicationController
-  before_action :authenticate_user!, only: %i[create destroy]
-  before_action :set_post, only: %i[create destroy]
-
   def create
-    like = @post.likes.build(like_params)
-    flash[:error] = t('.error') unless like.save
+    authenticate_user!
 
-    redirect_to referer_or_post_url(@post)
+    @post = Post.find(params[:post_id])
+    @post.likes.find_or_create_by(user: current_user)
+
+    redirect_to @post
   end
 
   def destroy
-    flash[:error] = t('.error') unless @post.liked(current_user)&.destroy
-    redirect_to referer_or_post_url(@post)
-  end
+    authenticate_user!
 
-  private
-
-  def like_params
-    { user_id: current_user.id }.merge(params.permit(:post_id))
-  end
-
-  def set_post
     @post = Post.find(params[:post_id])
-  end
+    @post.like_by_user(current_user)&.destroy
 
-  def referer_or_post_url(post)
-    request.referer || post
+    redirect_to @post
   end
 end

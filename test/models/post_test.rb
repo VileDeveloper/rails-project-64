@@ -68,8 +68,8 @@ class PostTest < ActiveSupport::TestCase
     assert_not_predicate Post.new(@post_data.merge(body: @body_too_short)), :valid?
   end
 
-  test 'post liked by user' do
-    assert @post_one.liked(@user_one)
-    assert_not @post_one.liked(@user_two)
+  test 'post like by user' do
+    assert @post_one.like_by_user(@user_one)
+    assert_not @post_one.like_by_user(@user_two)
   end
 end

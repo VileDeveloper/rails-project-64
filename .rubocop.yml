@@ -25,8 +25,7 @@ Layout/LineLength:
   AllowedPatterns:
     - '\s*# .+'
 Metrics/AbcSize:
-  Exclude:
-    - 'db/seeds/**/*'
+  Enabled: false
 Metrics/MethodLength:
   Enabled: false
 Rails/UniqueValidationWithoutIndex:

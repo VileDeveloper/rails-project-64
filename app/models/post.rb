@@ -32,11 +32,7 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: { minimum: 5, maximum: 255 }
   validates :body, presence: true, length: { minimum: 200, maximum: 4000 }
 
-  def liked(user)
-    return nil if !user || !user.id
-
-    @liked = likes.find_by(user_id: user.id) if @liked.nil? || user.id != @liked.user_id
-
-    @liked
+  def like_by_user(user)
+    likes.find_by(user:)
   end
 end
